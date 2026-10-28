@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Moonrise Tracker 🌙 Happy Karwa Chauth</title>
+<meta name="description" content="Karwa Chauth Mode ON: a live moonrise countdown, a fasting progress bar at 99%, and when the moon rises… Tum mera chaand ho ❤️ Type their name and press Start.">
+<meta property="og:title" content="Moonrise Tracker 🌙 Karwa Chauth Mode ON">
+<meta property="og:description" content="Fasting for you since sunrise ❤️ 99%… type their name, press Start and wait for the moon.">
+<meta name="theme-color" content="#070a1f">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=JetBrains+Mono:wght@700;800&family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<canvas id="sky"></canvas>
+<div id="ui">
+  <div id="mode"><span>Karwa Chauth Mode</span><span class="sw"><i></i></span><b>ON</b></div>
+  <div id="card">
+    <div class="r1"><span id="lbl">🌙 MOONRISE IN</span><span class="live"><i></i>LIVE</span></div>
+    <div id="cd">00:00:05<small>.00</small></div>
+    <div class="r2"><span id="fl">Fasting for you since sunrise ❤️</span><b id="pct">99%</b></div>
+    <div class="bar"><i id="fill"></i></div>
+    <div class="stats"><span>Water: 0 💧</span><span>Patience: ∞</span><span>Love: 100%</span></div>
+  </div>
+  <div id="msg">
+    <div id="l1"></div>
+    <div id="l2"><span id="l2a"></span><span id="nm"></span></div>
+    <div id="l3">Happy Karwa Chauth 🪔</div>
+  </div>
+  <div id="hint">Type your chaand's name 👇</div>
+  <div id="panel">
+    <div id="form"><input id="name" maxlength="18" placeholder="Their name…" autocomplete="off" enterkeyhint="go"><button id="go">Start 🌙</button></div>
+    <div id="after"><button id="share">Share 💌</button><button id="replay" class="ghost">Replay ↺</button></div>
+  </div>
+  <div id="foot">Made by <b>@hack.n.code</b></div>
+</div>
+<script src="script.js"></script>
+</body>
+</html>
