@@ -1,0 +1,55 @@
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{height:100%;background:#070a1f;overflow:hidden}
+body{font-family:Poppins,system-ui,sans-serif;color:#f4f1ff}
+#sky{position:fixed;inset:0;width:100%;height:100%;display:block}
+#ui{position:fixed;inset:0;pointer-events:none}
+#ui button,#ui input{pointer-events:auto}
+#mode{position:absolute;left:50%;transform:translateX(-50%);top:calc(16px + env(safe-area-inset-top));display:flex;align-items:center;gap:8px;white-space:nowrap;font:600 13px Poppins;letter-spacing:.03em;color:#e9e4ff;background:rgba(20,18,50,.62);border:1px solid rgba(160,150,255,.28);padding:6px 8px 6px 14px;border-radius:999px;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
+#mode b{font:800 12px Poppins;color:#ffd36e;margin-right:4px}
+#mode .sw{width:34px;height:20px;border-radius:999px;background:linear-gradient(135deg,#ffcf5a,#ff8fb1);position:relative;box-shadow:0 0 10px rgba(255,190,90,.6)}
+#mode .sw i{position:absolute;right:2px;top:2px;width:16px;height:16px;border-radius:50%;background:#fff}
+#card{position:absolute;left:50%;transform:translateX(-50%);top:calc(60px + env(safe-area-inset-top));width:min(440px,calc(100% - 32px));padding:14px 18px 14px;border-radius:22px;background:linear-gradient(160deg,rgba(34,30,80,.72),rgba(14,14,40,.72));border:1px solid rgba(170,160,255,.25);box-shadow:0 10px 40px rgba(0,0,0,.45),inset 0 1px 0 rgba(255,255,255,.08);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
+.r1{display:flex;justify-content:space-between;align-items:center;font:700 12px Poppins;letter-spacing:.14em;color:#b9b2ef}
+.live{display:flex;align-items:center;gap:6px;color:#ff8fa8;letter-spacing:.1em}
+.live i{width:8px;height:8px;border-radius:50%;background:#ff4d79;box-shadow:0 0 8px #ff4d79}
+#cd{margin:2px 0 8px;font:800 clamp(40px,12vw,56px)/1.1 'JetBrains Mono',monospace;letter-spacing:.02em;color:#fff;text-shadow:0 0 18px rgba(150,140,255,.55);font-variant-numeric:tabular-nums}
+#cd small{font-size:.45em;color:#a9a2e6;margin-left:2px}
+#cd.gold{color:#ffe7a3;text-shadow:0 0 22px rgba(255,200,90,.85)}
+#cd.gold small{color:#ffcf6e}
+.r2{display:flex;justify-content:space-between;align-items:baseline;gap:8px;font:600 13.5px Poppins;color:#efeaff}
+#pct{font:800 16px 'JetBrains Mono',monospace;color:#ff9fb8}
+.bar{margin-top:7px;height:12px;border-radius:999px;background:rgba(255,255,255,.08);overflow:visible;position:relative}
+#fill{position:absolute;left:0;top:0;bottom:0;width:99%;border-radius:999px;background:linear-gradient(90deg,#ff5f8f,#ff9a6b 60%,#ffd36e);box-shadow:0 0 12px rgba(255,120,140,.6)}
+.stats{display:flex;gap:6px;margin-top:11px}
+.stats span{flex:1;text-align:center;white-space:nowrap;font:600 11.5px Poppins;color:#ddd8ff;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.08);border-radius:10px;padding:6px 2px}
+#msg{position:absolute;left:0;right:0;top:55%;text-align:center;padding:0 16px}
+#l1{font:800 clamp(24px,7vw,34px)/1.2 Poppins;color:#fff6dc;text-shadow:0 0 18px rgba(255,200,100,.7),0 2px 8px rgba(0,0,0,.8);min-height:1.2em;white-space:nowrap}
+#l2{margin-top:4px;font-family:'Great Vibes',cursive;font-size:clamp(34px,10vw,50px);line-height:1.12;color:#ffe2a0;text-shadow:0 0 20px rgba(255,180,80,.75),0 2px 8px rgba(0,0,0,.85);min-height:2.3em}
+#nm{display:block;font-size:1.2em;color:#ffa3bd;text-shadow:0 0 22px rgba(255,90,140,.85),0 2px 8px rgba(0,0,0,.85)}
+#l3{margin-top:2px;font:700 clamp(15px,4.4vw,19px) Poppins;letter-spacing:.12em;text-transform:uppercase;color:#ffd36e;text-shadow:0 0 14px rgba(255,190,80,.7),0 2px 6px rgba(0,0,0,.9);opacity:0}
+.caret::after{content:"|";color:#ffe0a0;animation:bl 1s steps(1) infinite;margin-left:2px;font-family:Poppins;font-size:.8em}
+@keyframes bl{50%{opacity:0}}
+#hint{position:absolute;left:0;right:0;top:62%;text-align:center;font:600 16px Poppins;color:#e6e0ff;text-shadow:0 0 12px rgba(140,130,255,.7),0 2px 6px rgba(0,0,0,.9);transition:opacity .4s}
+#panel{position:absolute;left:0;right:0;bottom:calc(52px + env(safe-area-inset-bottom));display:flex;justify-content:center;padding:0 16px}
+#form,#after{display:flex;gap:10px;width:min(440px,100%);transition:opacity .45s,transform .45s}
+#after{position:absolute;left:16px;right:16px;width:auto;max-width:440px;margin:0 auto;justify-content:center;opacity:0;transform:translateY(12px);pointer-events:none}
+#after button{pointer-events:none}
+body.done #form{opacity:0;transform:translateY(12px)}
+body.done #form *{pointer-events:none}
+body.done #after{opacity:1;transform:none}
+body.done #after button{pointer-events:auto}
+body.running #form{opacity:0}
+body.running #form *{pointer-events:none}
+body.running #hint,body.done #hint{opacity:0}
+input{flex:1;min-width:0;height:52px;border-radius:16px;border:1.5px solid rgba(170,160,255,.5);background:rgba(16,14,42,.82);color:#fff;font:600 17px Poppins,sans-serif;padding:0 16px;outline:none}
+input::placeholder{color:rgba(210,205,255,.5)}
+input:focus,input.focus{border-color:#ffd36e;box-shadow:0 0 0 3px rgba(255,200,90,.22)}
+button{height:52px;border:0;border-radius:16px;padding:0 20px;font:700 17px Poppins,sans-serif;color:#2a1300;background:linear-gradient(135deg,#ffe49a,#ffc061 55%,#ff9a6b);box-shadow:0 6px 22px rgba(255,170,80,.4);cursor:pointer;white-space:nowrap;transition:transform .15s}
+button:active,button.press{transform:scale(.93)}
+button.ghost{background:rgba(20,18,50,.78);color:#e9e4ff;border:1.5px solid rgba(170,160,255,.45);box-shadow:none}
+#after button{flex:1;max-width:200px}
+#foot{position:absolute;left:0;right:0;text-align:center;bottom:calc(18px + env(safe-area-inset-bottom));font-size:13px;color:rgba(225,220,255,.8);letter-spacing:.03em}
+#foot b{color:#ffd36e}
+#toast{position:fixed;left:50%;bottom:130px;transform:translateX(-50%);background:rgba(20,18,50,.95);border:1px solid #ffd36e;color:#fff1cf;padding:10px 18px;border-radius:12px;font-size:14px;z-index:9}
+body.cap *{transition:none!important;animation:none!important}
+@media (max-height:700px){#card{padding:10px 14px}#cd{font-size:38px;margin-bottom:4px}.stats{margin-top:8px}#msg{top:56%}#l2{font-size:32px}}
