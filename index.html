@@ -3,38 +3,145 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>Moonrise Tracker 🌙 Happy Karwa Chauth</title>
-<meta name="description" content="Karwa Chauth Mode ON: a live moonrise countdown, a fasting progress bar at 99%, and when the moon rises… Tum mera chaand ho ❤️ Type their name and press Start.">
-<meta property="og:title" content="Moonrise Tracker 🌙 Karwa Chauth Mode ON">
-<meta property="og:description" content="Fasting for you since sunrise ❤️ 99%… type their name, press Start and wait for the moon.">
-<meta name="theme-color" content="#070a1f">
+<meta name="theme-color" content="#0a0826">
+<title>Karwa Chauth Special 🌙 Moonrise Tracker</title>
+<meta name="description" content="Karwa Chauth Special: live moonrise countdown for your city, chhalni reveal, sargi thali, shayari, promises and a wish card. Made by @hack.n.code">
+<meta property="og:title" content="Karwa Chauth Special 🌙 — Tum mera chaand ho ❤️">
+<meta property="og:description" content="Live moonrise countdown, chhalni reveal, shayari, promise wall & a wish card for your love. Made by @hack.n.code">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=JetBrains+Mono:wght@700;800&family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&family=Great+Vibes&family=Yatra+One&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
 </head>
-<body>
-<canvas id="sky"></canvas>
-<div id="ui">
-  <div id="mode"><span>Karwa Chauth Mode</span><span class="sw"><i></i></span><b>ON</b></div>
-  <div id="card">
-    <div class="r1"><span id="lbl">🌙 MOONRISE IN</span><span class="live"><i></i>LIVE</span></div>
-    <div id="cd">00:00:05<small>.00</small></div>
-    <div class="r2"><span id="fl">Fasting for you since sunrise ❤️</span><b id="pct">99%</b></div>
-    <div class="bar"><i id="fill"></i></div>
-    <div class="stats"><span>Water: 0 💧</span><span>Patience: ∞</span><span>Love: 100%</span></div>
+<body class="locked">
+
+<!-- ✨ Intro splash: mehendi draws itself -->
+<div id="splash">
+  <canvas id="mehendi"></canvas>
+  <div class="sp-in">
+    <div class="sp-kicker">✦ 29 · 10 · 2026 ✦</div>
+    <h1 class="sp-title">Karwa Chauth<span>Special 🌙</span></h1>
+    <p class="sp-for" id="spFor">A moonrise, coded with love</p>
+    <button id="enter" class="btn gold big">Tap to begin 🪔</button>
   </div>
-  <div id="msg">
-    <div id="l1"></div>
-    <div id="l2"><span id="l2a"></span><span id="nm"></span></div>
-    <div id="l3">Happy Karwa Chauth 🪔</div>
-  </div>
-  <div id="hint">Type your chaand's name 👇</div>
-  <div id="panel">
-    <div id="form"><input id="name" maxlength="18" placeholder="Their name…" autocomplete="off" enterkeyhint="go"><button id="go">Start 🌙</button></div>
-    <div id="after"><button id="share">Share 💌</button><button id="replay" class="ghost">Replay ↺</button></div>
-  </div>
-  <div id="foot">Made by <b>@hack.n.code</b></div>
 </div>
+
+<button id="music" class="music" aria-label="Music on/off">🔇</button>
+
+<main id="main">
+  <!-- 🌙 Hero: moonrise tracker -->
+  <section id="hero" class="hero">
+    <canvas id="sky"></canvas>
+    <div class="hero-ui">
+      <div class="mode" id="mode"><span class="dot"></span>Karwa Chauth Mode ON</div>
+      <div class="card" id="card">
+        <div class="crow">
+          <span class="lbl" id="cdLbl">🌙 MOONRISE IN</span>
+          <span class="city"><select id="city" aria-label="Your city"></select></span>
+        </div>
+        <div class="cd" id="cd">--:--:--</div>
+        <div class="sub" id="cdSub">&nbsp;</div>
+        <div class="bar"><i id="fill"></i></div>
+        <div class="barl"><span id="barTxt">Fasting for you since sunrise ❤️</span><b id="barPct">0%</b></div>
+      </div>
+      <div class="space" id="space"></div>
+      <div class="msg" id="msg">
+        <div class="l1" id="l1"></div>
+        <div class="l2"><span id="l2"></span> <span id="nm" class="nm"></span></div>
+        <div class="l3" id="l3"></div>
+      </div>
+      <div class="panel" id="panel">
+        <div class="row" id="row1">
+          <input id="name" maxlength="18" placeholder="Her / his name ❤️" autocomplete="off" enterkeyhint="go">
+          <button id="go" class="btn gold">Start 🌙</button>
+        </div>
+        <div class="row hide" id="row2">
+          <button id="share" class="btn ghost">Share 💌</button>
+          <button id="photoBtn" class="btn ghost">📷 Photo</button>
+          <button id="replay" class="btn ghost">Replay ↺</button>
+        </div>
+        <div class="hint" id="hint">⚡ Start = demo moonrise in 5 sec · scroll for more ↓</div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider">✦ 🪔 ✦</div>
+
+  <!-- ⏳ Fasting progress -->
+  <section id="fast" class="sec">
+    <h2>Fasting Progress</h2>
+    <p class="lead" id="fastLead">Nirjala vrat · sunrise → moonrise</p>
+    <div class="ringwrap reveal">
+      <svg viewBox="0 0 200 200" class="ring" aria-hidden="true">
+        <defs><linearGradient id="rg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ffe29a"/><stop offset=".55" stop-color="#ffb347"/><stop offset="1" stop-color="#ff6f91"/></linearGradient></defs>
+        <circle class="trk" cx="100" cy="100" r="84"/>
+        <circle id="ringArc" class="arc" cx="100" cy="100" r="84"/>
+      </svg>
+      <div class="ringc"><b id="ringPct">0%</b><span id="ringTime">0h 0m fasted</span><small id="ringLeft">&nbsp;</small></div>
+    </div>
+    <div class="stats">
+      <div class="stat reveal"><i>💧</i><span>Water</span><b>0</b><em class="m"><u style="width:2%"></u></em></div>
+      <div class="stat reveal"><i>🧘</i><span>Patience</span><b>∞</b><em class="m"><u style="width:100%"></u></em></div>
+      <div class="stat reveal"><i>❤️</i><span>Love</span><b>100%</b><em class="m"><u style="width:100%"></u></em></div>
+      <div class="stat reveal"><i>😅</i><span>Hunger</span><b id="hungerV">Thodi si</b><em class="m"><u id="hungerBar" style="width:60%"></u></em></div>
+    </div>
+  </section>
+
+  <div class="divider">✦ 🌼 ✦</div>
+
+  <!-- 🪔 Sargi thali -->
+  <section id="thali" class="sec">
+    <h2>Sargi Thali</h2>
+    <p class="lead">Before sunrise, a thali full of blessings</p>
+    <div class="thaliwrap reveal"><canvas id="thaliCv"></canvas></div>
+    <div class="chips reveal"><span>🪔 Diya</span><span>🏺 Karwa</span><span>🍬 Mithai</span><span>🌼 Phool</span><span>🔴 Sindoor</span><span>🥥 Nariyal</span></div>
+  </section>
+
+  <div class="divider">✦ 💫 ✦</div>
+
+  <!-- 💫 Shayari carousel -->
+  <section id="shayari" class="sec">
+    <h2>Chaand Shayari</h2>
+    <p class="lead">Swipe · auto plays</p>
+    <div class="car reveal" id="car"><div class="track" id="track"></div></div>
+    <div class="dots" id="dots"></div>
+  </section>
+
+  <div class="divider">✦ 💞 ✦</div>
+
+  <!-- 💞 Promise wall -->
+  <section id="promises" class="sec">
+    <h2>Promise Wall</h2>
+    <p class="lead">Tap a card to reveal a promise</p>
+    <div class="pgrid" id="pgrid"></div>
+    <button id="revealAll" class="btn ghost small">Reveal all ✨</button>
+  </section>
+
+  <div class="divider">✦ 💌 ✦</div>
+
+  <!-- 💌 Wish card -->
+  <section id="wish" class="sec">
+    <h2>Your Wish Card</h2>
+    <p class="lead">Add a photo, download &amp; send it 💌</p>
+    <div class="wishwrap reveal"><canvas id="wishCv" width="1080" height="1350"></canvas></div>
+    <div class="wrow">
+      <button id="photo2" class="btn ghost">📷 Add photo</button>
+      <button id="dl" class="btn gold">Download ⬇</button>
+    </div>
+    <a id="wa" class="btn wa" href="#" target="_blank" rel="noopener">Share on WhatsApp 💚</a>
+    <p class="tiny">Your photo stays on your phone. Nothing is uploaded.</p>
+    <input type="file" id="file" accept="image/*" hidden>
+  </section>
+
+  <footer class="foot">
+    <div class="ft-moon">🌙</div>
+    <div class="ft-t">Happy Karwa Chauth</div>
+    <button id="replay2" class="btn ghost small">Replay the moonrise ↺</button>
+    <div class="ft-by" id="foot">Made by <b>@hack.n.code</b> 💻❤️</div>
+  </footer>
+</main>
+
+<div id="toast"></div>
 <script src="script.js"></script>
 </body>
 </html>
